@@ -1,4 +1,5 @@
-config/config.yml
+config
 .php_cs.cache
 Dockerfile
 *.csv
+vendor
