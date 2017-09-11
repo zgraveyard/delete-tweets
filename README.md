@@ -37,7 +37,10 @@ So basically:
 
 1. You will need to map a yml config file (check the config directory for the info you need to supply).
 2. You will need to map the csv archive file that you have got from twitter.
-3. You can set the offset/limit and adjust them to fill your needs. _Please note_: that the limit cant be set more than 4k tweets.
+3. You can set the offset/limit and adjust them to fill your needs. 
+_Please note_: that the limit cant be set more than 4k tweets, other wise it will timeout.
+4. You can run the next batch immediately after finishing the set, no need to wait till you can run the command again.
+5. remember to change the offset so you can skip the number that you have deleted.
 
 ## Run the APP using PHP
 
