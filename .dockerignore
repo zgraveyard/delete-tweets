@@ -1,0 +1,4 @@
+config/config.yml
+.php_cs.cache
+Dockerfile
+*.csv
