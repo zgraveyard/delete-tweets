@@ -10,4 +10,5 @@ RUN mkdir config \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --quiet \
     && rm composer-setup.php \
-    && php composer.phar install
+    && php composer.phar install \
+    && rm -f composer.phar
