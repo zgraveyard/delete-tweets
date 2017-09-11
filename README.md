@@ -30,7 +30,7 @@ Which you can get from [Tweeter Developer Apps](https://apps.twitter.com/) websi
 Then run the following command :
 
 ```bash
-docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml -v $(pwd)/tweets.csv:/var/www/tweets.csv zaherg/tweet-delete php tweet tweets:delete tweets.csv --offset=0 --limit=100
+docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml -v $(pwd)/tweets.csv:/var/www/tweets.csv zaherg/delete-tweets php tweet tweets:delete tweets.csv --offset=0 --limit=100
 ```
 
 So basically:
