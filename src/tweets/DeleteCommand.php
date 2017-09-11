@@ -20,6 +20,7 @@ class DeleteCommand extends Command
     {
         $this->setName('tweets:delete')
              ->addArgument('file', InputArgument::OPTIONAL, 'Path to the file to process')
+             ->addOption('skip', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'Put the id of the tweet to skip')
              ->addOption('offset', null, InputOption::VALUE_OPTIONAL, 'Set the offset to start with', 0)
              ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Set the limit to work on', 10);
     }
@@ -45,6 +46,7 @@ class DeleteCommand extends Command
         $filePath = $input->getArgument('file');
         $offset = $input->getOption('offset');
         $limit = $input->getOption('limit');
+        $tweetToSkip = $input->getOption('skip');
 
         if ((int)$limit > 4000) {
             $output->writeln('<error>Bigger limit number cause time out.</error>');
@@ -58,18 +60,25 @@ class DeleteCommand extends Command
             ->reverse()
             ->slice($offset)
             ->take($limit)
-            ->each(function ($item) use ($output) {
-                $result = $this->connector->post('statuses/destroy', ['id' => $item['tweet_id']]);
-                if (property_exists($result, 'text')) {
-                    $output->writeln(sprintf(
-                        '<comment>[OK]</comment> Deleting: "%s" which was created at: %s',
-                        $result->text,
-                        $result->created_at
-                    ));
+            ->each(function ($item) use ($output, $tweetToSkip) {
+                if (!in_array($item['tweet_id'], $tweetToSkip, true)) {
+                    $result = $this->connector->post('statuses/destroy', ['id' => $item['tweet_id']]);
+                    if (property_exists($result, 'text')) {
+                        $output->writeln(sprintf(
+                            '<comment>[OK]</comment> Deleting: "%s" which was created at: %s',
+                            $result->text,
+                            $result->created_at
+                        ));
+                    } else {
+                        $output->writeln(sprintf(
+                            '<error>[ERR]</error> Tweet with the ID: "%s" has been <error>deleted</error>.',
+                            $item['tweet_id']
+                        ));
+                    }
                 } else {
                     $output->writeln(sprintf(
-                        '<error>[ERR]</error> Tweet with the ID: "%s" has been <error>deleted</error>.',
-                        $item['tweet_id']
+                        '<comment>[NOTE]</comment> Tweet with the ID: "%s" has been skipped.',
+                        $tweetToSkip
                     ));
                 }
             });
