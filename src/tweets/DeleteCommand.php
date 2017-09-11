@@ -48,6 +48,7 @@ class DeleteCommand extends Command
 
         if ((int)$limit > 4000) {
             $output->writeln('<error>Bigger limit number cause time out.</error>');
+            exit;
         }
 
         $this->checkFileExistence($filePath, $output);
