@@ -2,9 +2,9 @@
 
 This is a simple PHP Cli application that can help you to delete your tweets.
 
-##################################################
-############ NO Guarantee USE it at your OWN RISK.
-##################################################
+# NO Guarantee USE it at your OWN RISK.
+
+
 
 ## Have your archive locally:
 
