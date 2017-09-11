@@ -1,4 +1,4 @@
-# Delete Tweets
+#Delete Tweets
 
 This is a simple PHP Cli application that can help you to delete your tweets.
 
@@ -6,13 +6,13 @@ This is a simple PHP Cli application that can help you to delete your tweets.
 ############ NO Guarantee USE it at your OWN RISK.
 ##################################################
 
-## Have your archive locally:
+##Have your archive locally:
 
 1. Request your tweet archive from your account settings, more from [here](https://support.twitter.com/articles/20170160).
 2. Once you got the email from them and downloaded the file, you will need to extract it.
 3. The most important file is `tweets.csv` this file contain all your tweets.
 
-## Register your application:
+##Register your application:
 
 You will need few information to be able to use this app, first you will need the following:
 
@@ -25,7 +25,7 @@ You will need few information to be able to use this app, first you will need th
 
 Which you can get from [Tweeter Developer Apps](https://apps.twitter.com/) website.
 
-## Run the APP using Docker
+##Run the APP using Docker
 
 Then run the following command :
 
@@ -39,7 +39,7 @@ So basically:
 2. You will need to map the csv archive file that you have got from twitter.
 3. You can set the offset/limit and adjust them to fill your needs. _Please note_: that the limit cant be set more than 4k tweets.
 
-## Run the APP using PHP
+##Run the APP using PHP
 
 1. Clone it
 2. run `composer install`
