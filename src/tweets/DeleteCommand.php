@@ -78,7 +78,7 @@ class DeleteCommand extends Command
                 } else {
                     $output->writeln(sprintf(
                         '<comment>[NOTE]</comment> Tweet with the ID: "%s" has been skipped.',
-                        $tweetToSkip
+                        $item['tweet_id']
                     ));
                 }
             });
