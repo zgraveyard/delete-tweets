@@ -1,9 +1,8 @@
 # Delete Tweets
 
-This is a simple PHP Cli application that can help you to delete your tweets.
+This is a simple PHP Cli application that can help you to delete your tweets, starting from the first tweet to the current one.
 
 # NO Guarantee USE it at your OWN RISK.
-
 
 
 ## Have your archive locally:
@@ -27,21 +26,26 @@ Which you can get from [Tweeter Developer Apps](https://apps.twitter.com/) websi
 
 ## CLI parameter
 
-The app depend on 4 main parameters:
-
-1. File to process.
-2. offset: the starting point for the process.
-3. limit: the number of records to process.
-4. skip: a list of id's for all the tweets that you want to keep, you can pass as many as you want. 
+The app depends on one main parameter which is the `File` to process mean while all the other parameters are optional.
 
 ## Run the APP using Docker
 
-Then run the following command :
+Then run one of the following command :
+
+### Delete all tweets
 
 ```bash
 docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml \
     -v $(pwd)/tweets.csv:/var/www/tweets.csv zaherg/delete-tweets \
-    php tweet tweets:delete tweets.csv --offset=0 --limit=100
+    tweets:delete tweets.csv --all
+```
+
+### Delete the first 100 tweets
+
+```bash
+docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml \
+    -v $(pwd)/tweets.csv:/var/www/tweets.csv zaherg/delete-tweets \
+    tweets:delete tweets.csv --offset=0 --limit=100
 ```
 
 Example for skipping a tweet:
@@ -49,7 +53,7 @@ Example for skipping a tweet:
 ```bash
 docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml \
     -v $(pwd)/tweets.csv:/var/www/tweets.csv zaherg/delete-tweets \
-    php tweet tweets:delete tweets.csv --skip=847336825899278336 --skip=847336825899278331
+    tweets:delete tweets.csv --skip=847336825899278336 --skip=847336825899278331
 ```
 
 So basically:
@@ -61,6 +65,7 @@ _Please note_: that the limit cant be set more than 4k tweets, other wise it wil
 4. You can run the next batch immediately after finishing the set, no need to wait till you can run the command again.
 5. remember to change the offset so you can skip the number that you have deleted.
 6. provide the ids for the tweets to keep, like the keybase.io verification tweet.
+7. you can use the `--all` parameter to delete all your tweets.
 
 ## Run the APP using PHP
 
