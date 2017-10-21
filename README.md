@@ -48,7 +48,7 @@ docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml \
     tweets:delete tweets.csv --offset=0 --limit=100
 ```
 
-Example for skipping a tweet:
+Example for skipping multiple tweets:
 
 ```bash
 docker run --rm -v $(pwd)/config/config.yml:/var/www/config/config.yml \
